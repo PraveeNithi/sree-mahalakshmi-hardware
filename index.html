@@ -60,6 +60,16 @@ h1{text-align:center;padding:18px;color:#1f2937}
 </div>
 
 </div>
-
+<script>
+const slider = document.querySelector('.slider');
+let i = 0;
+setInterval(() => {
+  i = (i + 1) % 5;
+  slider.scrollTo({
+    left: i * slider.clientWidth,
+    behavior: 'smooth'
+  });
+}, 3000);
+</script>
 </body>
 </html>
