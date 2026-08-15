@@ -1,75 +1,573 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Sree Mahalakshmi Hardware</title>
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+
+<title>Sri Mahalaxmi Hardware | Salem</title>
+
+<meta name="description" content="Sri Mahalaxmi Hardware - Doors, Door Fittings, All Hardware Tools in Salem">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+
 <style>
-*{margin:0;padding:0;box-sizing:border-box}
-body{font-family:Arial,sans-serif;background:#f5f5f5}
-.container{max-width:430px;margin:auto;background:#fff;min-height:100vh}
-.slider{display:flex;overflow-x:auto;scroll-snap-type:x mandatory}
-.slider img{width:100%;height:300px;object-fit:cover;flex:none;scroll-snap-align:start}
-.slider::-webkit-scrollbar{display:none}
-h1{text-align:center;padding:18px;color:#1f2937}
-.sub{text-align:center;color:#666;padding-bottom:12px}
-.btn{display:block;margin:12px 18px;padding:15px;border-radius:12px;text-decoration:none;color:#fff;font-weight:bold;text-align:center}
-.call{background:#0A7CFF}
-.wa{background:#25D366}
-.insta{background:#E1306C}
-.email{background:#EA4335}
-.map{background:#2E7D32}
-.footer{text-align:center;padding:20px;color:#666}
+
+:root{
+--blue:#123C89;
+--gold:#D4AF37;
+--cream:#FBF8F2;
+--text:#222;
+--green:#25D366;
+}
+
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:Poppins,sans-serif;
+scroll-behavior:smooth;
+}
+
+body{
+background:var(--cream);
+color:var(--text);
+overflow-x:hidden;
+}
+
+/* Loading */
+
+#loader{
+position:fixed;
+inset:0;
+background:white;
+display:flex;
+justify-content:center;
+align-items:center;
+flex-direction:column;
+z-index:99999;
+transition:.7s;
+}
+
+#loader img{
+width:120px;
+animation:pulse 2s infinite;
+}
+
+@keyframes pulse{
+50%{transform:scale(1.08);}
+}
+
+/* Header */
+
+header{
+position:fixed;
+top:0;
+width:100%;
+padding:12px 20px;
+display:flex;
+justify-content:space-between;
+align-items:center;
+background:rgba(255,255,255,.9);
+backdrop-filter:blur(15px);
+box-shadow:0 5px 20px rgba(0,0,0,.08);
+z-index:999;
+}
+
+.brand{
+display:flex;
+align-items:center;
+gap:10px;
+}
+
+.brand img{
+width:56px;
+height:56px;
+border-radius:50%;
+box-shadow:0 0 18px rgba(212,175,55,.5);
+}
+
+.brand h2{
+color:var(--blue);
+font-size:20px;
+}
+
+/* Hero */
+
+.hero{
+margin-top:80px;
+position:relative;
+height:420px;
+overflow:hidden;
+}
+
+.slide{
+position:absolute;
+inset:0;
+opacity:0;
+transition:1s;
+transform:scale(1);
+}
+
+.slide.active{
+opacity:1;
+animation:zoom 4s linear;
+}
+
+@keyframes zoom{
+from{transform:scale(1);}
+to{transform:scale(1.08);}
+}
+
+.slide img{
+width:100%;
+height:100%;
+object-fit:cover;
+}
+
+.overlay{
+position:absolute;
+inset:0;
+background:linear-gradient(to top,rgba(0,0,0,.5),transparent);
+display:flex;
+flex-direction:column;
+justify-content:end;
+padding:30px;
+color:white;
+}
+
+.overlay h1{
+font-size:36px;
+}
+
+.overlay p{
+margin-top:8px;
+font-size:17px;
+}
+
+.dots{
+position:absolute;
+bottom:18px;
+width:100%;
+display:flex;
+justify-content:center;
+gap:10px;
+}
+
+.dot{
+width:10px;
+height:10px;
+background:white;
+opacity:.4;
+border-radius:50%;
+cursor:pointer;
+}
+
+.dot.active{
+opacity:1;
+background:var(--gold);
+}
+
+/* Buttons */
+
+.contact-grid{
+display:grid;
+grid-template-columns:repeat(2,1fr);
+gap:15px;
+padding:25px;
+}
+
+.btn{
+padding:16px;
+text-align:center;
+text-decoration:none;
+border-radius:18px;
+font-weight:600;
+color:white;
+transition:.3s;
+}
+
+.btn:hover{
+transform:translateY(-4px);
+}
+
+.call{background:var(--gold);}
+.wa{background:var(--green);}
+.insta{
+background:linear-gradient(45deg,#833ab4,#fd1d1d,#fcb045);
+}
+.email{background:var(--blue);}
+.map{background:#145f47;}
+.share{background:#8B5E3C;}
+
+/* Section */
+
+section{
+padding:20px;
+}
+
+.title{
+font-size:28px;
+color:var(--blue);
+margin-bottom:18px;
+}
+
+/* Gallery */
+
+.gallery{
+display:grid;
+grid-template-columns:repeat(2,1fr);
+gap:12px;
+}
+
+.gallery img{
+width:100%;
+border-radius:16px;
+cursor:pointer;
+transition:.35s;
+}
+
+.gallery img:hover{
+transform:scale(1.04);
+}
+
+/* Lightbox */
+
+#lightbox{
+position:fixed;
+inset:0;
+background:rgba(0,0,0,.92);
+display:none;
+justify-content:center;
+align-items:center;
+z-index:9999;
+}
+
+#lightbox img{
+max-width:94%;
+max-height:92%;
+border-radius:12px;
+}
+
+.close{
+position:absolute;
+top:18px;
+right:25px;
+font-size:40px;
+color:white;
+cursor:pointer;
+}
+
+/* Footer */
+
+footer{
+margin-top:40px;
+padding:35px 20px;
+background:white;
+text-align:center;
+}
+
+footer h3{
+color:var(--blue);
+margin-bottom:12px;
+}
+
+/* Floating */
+
+.float{
+position:fixed;
+bottom:18px;
+right:18px;
+display:flex;
+flex-direction:column;
+gap:12px;
+z-index:999;
+}
+
+.float a{
+width:60px;
+height:60px;
+display:flex;
+justify-content:center;
+align-items:center;
+border-radius:50%;
+text-decoration:none;
+color:white;
+font-size:24px;
+box-shadow:0 8px 20px rgba(0,0,0,.25);
+}
+
+.float .callf{background:var(--gold);}
+.float .waf{background:var(--green);}
+
+@media(min-width:768px){
+
+.hero{height:540px;}
+
+.gallery{
+grid-template-columns:repeat(4,1fr);
+}
+
+.contact-grid{
+grid-template-columns:repeat(3,1fr);
+}
+
+.brand h2{
+font-size:24px;
+}
+}
+
+.fade{
+opacity:0;
+transform:translateY(40px);
+transition:1s;
+}
+
+.fade.show{
+opacity:1;
+transform:none;
+}
+
 </style>
 </head>
+
 <body>
 
-<div class="container">
+<div id="loader">
 
-<div class="slider">
-<img src="shop.jpg.jpeg">
-<img src="shop1.jpg.jpeg">
-<img src="shop2.jpg.jpeg">
-<img src="shop3.jpg.jpeg">
-<img src="shop4.jpg.jpeg">
-</div>
+<img src="images/logo.png">
 
-<h1>Sree Mahalakshmi Hardware</h1>
-<div class="sub">Wholesale Dealers in Hardwares & Fittings</div>
-
-<a class="btn call" href="tel:9600650607">📞 Call 9600650607</a>
-<a class="btn wa" href="https://wa.me/919600650607">💬 WhatsApp 9600650607</a>
-
-<a class="btn call" href="tel:6380246462">📞 Call 6380246462</a>
-<a class="btn wa" href="https://wa.me/916380246462">💬 WhatsApp 6380246462</a>
-
-<a class="btn insta" href="https://instagram.com/srimahalaxmihardwareslm" target="_blank">
-📸 Instagram
-</a>
-
-<a class="btn email" href="mailto:mehararamdewasi1978@gmail.com">
-📧 Email
-</a>
-
-<a class="btn map" href="https://www.google.com/maps/search/?api=1&query=102,+Fort+Main+Road,+Shevapet,+Salem+636002" target="_blank">
-📍 Open Google Maps
-</a>
-
-<div class="footer">
-102, Fort Main Road, Shevapet, Salem – 636002
-</div>
+<p style="margin-top:15px;color:#123C89;font-weight:600;">Sri Mahalaxmi Hardware</p>
 
 </div>
+
+<header>
+
+<div class="brand">
+
+<img src="images/logo.png">
+
+<h2>Sri Mahalaxmi Hardware</h2>
+
+</div>
+
+</header>
+
+<div class="hero">
+
+<div class="slide active"><img src="images/shop1.jpg"></div>
+<div class="slide"><img src="images/shop2.jpg"></div>
+<div class="slide"><img src="images/shop3.jpg"></div>
+<div class="slide"><img src="images/shop4.jpg"></div>
+<div class="slide"><img src="images/shop5.jpg"></div>
+
+<div class="overlay">
+
+<h1>Sri Mahalaxmi Hardware</h1>
+
+<p id="changingText">All Hardware Tools</p>
+
+</div>
+
+<div class="dots"></div>
+
+</div>
+
+<div class="contact-grid fade">
+
+<a class="btn call" href="tel:9600650607">📞 Call 1</a>
+
+<a class="btn call" href="tel:6380246462">📞 Call 2</a>
+
+<a class="btn wa" href="https://wa.me/919600650607">💬 WhatsApp 1</a>
+
+<a class="btn wa" href="https://wa.me/916380246462">💬 WhatsApp 2</a>
+
+<a class="btn insta" target="_blank"
+href="https://instagram.com/srimahalaxmihardwareslm">📸 Instagram</a>
+
+<a class="btn email"
+href="mailto:srimahalaxmi2025hardwareslm@gmail.com">✉ Email</a>
+
+<a class="btn map" target="_blank"
+href="https://maps.google.com/?q=102+Fort+Main+Road+Shevapet+Salem+636002">📍 Location</a>
+
+<a class="btn share" href="#" id="shareBtn">🔗 Share Shop</a>
+
+</div>
+
+<section class="fade">
+
+<h2 class="title">Our Store</h2>
+
+<div class="gallery" id="gallery"></div>
+
+</section>
+
+<div id="lightbox">
+
+<span class="close">&times;</span>
+
+<img id="lightImg">
+
+</div>
+
+<footer class="fade">
+
+<h3>Sri Mahalaxmi Hardware</h3>
+
+<p>102, Fort Main Road, Shevapet, Salem – 636002</p>
+
+<p>📞 9600650607 | 6380246462</p>
+
+<p>✉ srimahalaxmi2025hardwareslm@gmail.com</p>
+
+</footer>
+
+<div class="float">
+
+<a class="callf" href="tel:9600650607">📞</a>
+
+<a class="waf" href="https://wa.me/919600650607">💬</a>
+
+</div>
+
 <script>
-const slider = document.querySelector('.slider');
-let i = 0;
-setInterval(() => {
-  i = (i + 1) % 5;
-  slider.scrollTo({
-    left: i * slider.clientWidth,
-    behavior: 'smooth'
-  });
-}, 3000);
+
+window.onload=()=>{
+
+setTimeout(()=>{
+
+loader.style.opacity="0";
+
+setTimeout(()=>loader.remove(),700);
+
+},1200);
+
+};
+
+const slides=document.querySelectorAll(".slide");
+
+const dotsContainer=document.querySelector(".dots");
+
+const texts=[
+"All Hardware Tools",
+"Doors",
+"Door Fittings",
+"Quality Products",
+"Trusted Hardware Store"
+];
+
+let current=0;
+
+slides.forEach((_,i)=>{
+
+const d=document.createElement("div");
+
+d.className="dot";
+
+if(i===0)d.classList.add("active");
+
+d.onclick=()=>show(i);
+
+dotsContainer.appendChild(d);
+
+});
+
+const dots=document.querySelectorAll(".dot");
+
+function show(i){
+
+slides[current].classList.remove("active");
+
+dots[current].classList.remove("active");
+
+current=i;
+
+slides[current].classList.add("active");
+
+dots[current].classList.add("active");
+
+changingText.textContent=texts[current];
+
+}
+
+setInterval(()=>{
+
+show((current+1)%slides.length);
+
+},3500);
+
+const gallery=document.getElementById("gallery");
+
+for(let i=1;i<=20;i++){
+
+const img=document.createElement("img");
+
+img.loading="lazy";
+
+img.src=`images/shop${i}.jpg`;
+
+img.onclick=()=>{
+
+lightbox.style.display="flex";
+
+lightImg.src=img.src;
+
+};
+
+gallery.appendChild(img);
+
+}
+
+close.onclick=()=>lightbox.style.display="none";
+
+lightbox.onclick=e=>{
+
+if(e.target.id==="lightbox")lightbox.style.display="none";
+
+};
+
+shareBtn.onclick=async(e)=>{
+
+e.preventDefault();
+
+if(navigator.share){
+
+navigator.share({
+
+title:"Sri Mahalaxmi Hardware",
+
+text:"Visit Sri Mahalaxmi Hardware",
+
+url:location.href
+
+});
+
+}else{
+
+navigator.clipboard.writeText(location.href);
+
+alert("Link Copied");
+
+}
+
+};
+
+const observer=new IntersectionObserver(entries=>{
+
+entries.forEach(e=>{
+
+if(e.isIntersecting)e.target.classList.add("show");
+
+});
+
+});
+
+document.querySelectorAll(".fade").forEach(el=>observer.observe(el));
+
 </script>
+
 </body>
 </html>
